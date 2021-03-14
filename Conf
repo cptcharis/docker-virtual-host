@@ -1,0 +1,16 @@
+<VirtualHost *:80>
+        ServerAdmin admin@example.com
+        DocumentRoot /var/www
+        ServerName docker.example.com
+        ErrorLog logs/docker.example.com_error.log
+        CustomLog logs/docker.example.com_access.log combined
+        ProxyPreserveHost On
+        ProxyRequests off
+
+        <Location />
+                ProxyPass http://localhost:9000/
+                ProxyPassReverse http://localhost:9000/
+                Order allow,deny
+                Allow from all
+        </Location>
+</VirtualHost>
